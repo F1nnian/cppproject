@@ -19,6 +19,9 @@ InputHandler::InputHandler(GameBoard& gameboard, int width, int height, int tile
 void InputHandler::handleMouseInput(int mouseX, int mouseY) {
     int row = (mouseY - menuHeight) / tileSize;
     int col = mouseX / tileSize;
+    if(gameBoard.getCandy(row, col).getType() == 0) {
+        return;
+    }
 
     if(selectedRow == -1 && selectedCol == -1) {
         gameBoard.selectCandy(row, col);
@@ -35,7 +38,7 @@ void InputHandler::handleMouseInput(int mouseX, int mouseY) {
             selectedCol = col;
         }
     }
-
+    std::cout << "Selected row: " << selectedRow << " Selected col: " << selectedCol << std::endl;
 }
 
 void InputHandler::reset() {
