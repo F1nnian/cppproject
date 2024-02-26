@@ -1,16 +1,30 @@
 #include "GameBoard.h"
-#include <vector>
 #include <iostream>
 
-GameBoard::GameBoard(int width, int height) : 
-    tileSize(std::min(width / COLS, (height - menuHeight) / ROWS)), 
-    inputHandler(width, height, tileSize, menuHeight, ROWS, COLS)
+GameBoard::GameBoard(int width, int height)
 {
+    tileSize = std::min(width / COLS, (height - menuHeight) / ROWS);
     initialize();
 }
 
-InputHandler GameBoard::getInputHandler() {
-    return inputHandler;
+int GameBoard::getRows() {
+    return ROWS;
+}
+
+int GameBoard::getCols() {
+    return COLS;
+}
+
+Candy& GameBoard::getCandy(int row, int col) {
+    return grid[row][col];
+}
+
+int GameBoard::getTileSize() {
+    return tileSize;
+}
+
+int GameBoard::getMenuHeight() {
+    return menuHeight;
 }
 
 void GameBoard::initialize()
@@ -38,6 +52,7 @@ void GameBoard::draw()
 
             // Draw candy at the position (posX, posY)
             // Assuming Candy class has a method draw(int x, int y) to draw the candy
+            // std::cout << grid[i][j].getType() << std::endl;
             grid[i][j].draw(menuHeight, tileSize);
         }
     }
@@ -45,33 +60,12 @@ void GameBoard::draw()
 
 }
 
-void GameBoard::update()
-{
-    int row = inputHandler.getSelectedRow();
-    int col = inputHandler.getSelectedCol();
-
-    if(selectedCandy == nullptr) {
-        if(inputHandler.getSelectedRow() != -1 && inputHandler.getSelectedCol() != -1) {
-            selectCandy(row, col);
-        }
-    } else {
-        if(inputHandler.getSelectedRow() != -1 && inputHandler.getSelectedCol() != -1) {
-            if(abs(row - selectedCandy->getRow()) + abs(col - selectedCandy->getCol()) == 1) {
-                selectedCandy->setSelected(false);
-                swapCandies(row, col, selectedCandy->getRow(), selectedCandy->getCol());
-                selectedCandy = nullptr;
-            }else {
-                selectedCandy->setSelected(false);
-                selectCandy(row, col);
-            }
-        }
-    }
-    inputHandler.reset();
-}
-
 void GameBoard::selectCandy(int row, int col) {
     grid[row][col].setSelected(true);
-    selectedCandy = &grid[row][col];
+}
+
+void GameBoard::deselectCandy(int row, int col) {
+    grid[row][col].setSelected(false);
 }
 
 void GameBoard::swapCandies(int row1, int col1, int row2, int col2)

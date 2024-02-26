@@ -4,23 +4,16 @@
 int selectedRow = -1;
 int selectedCol = -1;
 
-InputHandler::InputHandler(int width, int height, int tileSize, int menuHeight, int ROWS, int COLS) 
+InputHandler::InputHandler(GameBoard& gameboard, int width, int height, int tileSize, int menuHeight, int ROWS, int COLS) :
+    gameBoard(gameboard),
+    width(width),
+    height(height),
+    tileSize(tileSize),
+    menuHeight(menuHeight),
+    ROWS(ROWS),
+    COLS(COLS)
 {
-    this->width = width;
-    this->height = height;
-    this->tileSize = tileSize;
-    this->menuHeight = menuHeight;
-    this->ROWS = ROWS;
-    this->COLS = COLS;
-    // this->gameBoardPtr = gameBoardPtr;
-}
 
-int InputHandler::getSelectedRow() {
-    return selectedRow;
-}
-
-int InputHandler::getSelectedCol() {
-    return selectedCol;
 }
 
 void InputHandler::handleMouseInput(int mouseX, int mouseY) {
@@ -29,8 +22,22 @@ void InputHandler::handleMouseInput(int mouseX, int mouseY) {
     int row = (mouseY - menuHeight) / tileSize;
     int col = mouseX / tileSize;
 
-    selectedRow = row;
-    selectedCol = col;
+    if(selectedRow == -1 && selectedCol == -1) {
+        gameBoard.selectCandy(row, col);
+        selectedRow = row;
+        selectedCol = col;
+    } else {
+        gameBoard.deselectCandy(selectedRow, selectedCol);
+        if(abs(row - selectedRow) + abs(col - selectedCol) == 1) {
+            gameBoard.swapCandies(row, col, selectedRow, selectedCol);
+            reset();
+        }else {
+            gameBoard.selectCandy(row, col);
+            selectedRow = row;
+            selectedCol = col;
+        }
+    }
+
 }
 
 void InputHandler::reset() {

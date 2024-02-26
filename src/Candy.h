@@ -5,14 +5,16 @@
 class Candy
 {
 public:
-    Candy() = default;
+    Candy();
     Candy(int row, int col);
     void setSelected(bool selected);       // SRP: Handles only setting the selected state
     int getRow();
     int getCol();
+    int getType();
     void swapped(int row, int col);        // SRP: Handles only swapping the candy
     void draw(int menuHeight, int tileSize);
     bool isAdjacentTo(const Candy& other); // SRP: Handles only adjacency checking
+    void setMatch(bool matched);         // SRP: Handles only setting the matched state
     // Other candy methods
 private:
     static const int NUM_COLORS = 4;
@@ -20,5 +22,6 @@ private:
     bool _selected = false;
     int row;
     int col;
+    int type;
     // Other properties
 };

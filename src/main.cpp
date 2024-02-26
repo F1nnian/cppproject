@@ -1,20 +1,25 @@
 #include "GameBoard.h"
+#include "CandyRemover.h"
+#include "InputHandler.h"
 
 const int screenWidth = 400;
 const int screenHeight = 850;
 
-GameBoard gameBoard(screenWidth, screenHeight);
-InputHandler inputHandler = gameBoard.getInputHandler();
 
 int main() {
     InitWindow(screenWidth, screenHeight, "Candy Crush");
     SetTargetFPS(60);
 
+    GameBoard gameBoard(screenWidth, screenHeight);
+    InputHandler inputHandler(gameBoard, screenWidth, screenHeight, gameBoard.getTileSize(), gameBoard.getMenuHeight(), gameBoard.getRows(), gameBoard.getCols());
+    CandyRemover candyRemover(gameBoard);
+
     while (!WindowShouldClose()) {
         BeginDrawing();
         ClearBackground(RAYWHITE);
 
-        gameBoard.update();
+        candyRemover.checkForMatches();
+        // gameBoard.update();
         gameBoard.draw();
 
         EndDrawing();
