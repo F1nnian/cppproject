@@ -38,21 +38,13 @@ void GameBoard::initialize()
 
 void GameBoard::draw()
 {
-    // Clear the screen
     ClearBackground(RAYWHITE); // Background color
 
-    // Calculate cell width and height
-
-    // Draw candies on the grid
     for (int i = 0; i < ROWS; ++i) {
         for (int j = 0; j < COLS; ++j) {
-            // Calculate position of the current cell
             int posX = j * tileSize;
             int posY = i * tileSize + menuHeight;
 
-            // Draw candy at the position (posX, posY)
-            // Assuming Candy class has a method draw(int x, int y) to draw the candy
-            // std::cout << grid[i][j].getType() << std::endl;
             grid[i][j].draw(menuHeight, tileSize);
         }
     }

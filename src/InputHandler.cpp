@@ -17,8 +17,6 @@ InputHandler::InputHandler(GameBoard& gameboard, int width, int height, int tile
 }
 
 void InputHandler::handleMouseInput(int mouseX, int mouseY) {
-    // Convert mouse coordinates to grid indices
-    std::cout << "MouseX: " << mouseX << " MouseY: " << mouseY << std::endl;
     int row = (mouseY - menuHeight) / tileSize;
     int col = mouseX / tileSize;
 

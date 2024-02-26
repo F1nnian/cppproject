@@ -3,12 +3,11 @@
 
 Candy::Candy()
 {
-    std::cout << "Default constructor" << std::endl;
+    
 }
 
 Candy::Candy(int row, int col): row(row), col(col)
 {
-    std::cout << "Row: " << row << " Col: " << col << std::endl;
     type = std::rand() % NUM_COLORS + 1;
     switch (type) {
         case 1: color = RED; break;
@@ -26,7 +25,7 @@ void Candy::setSelected(bool selected)
     _selected = selected;
 }
 
-void Candy::setMatch(bool matched)
+void Candy::setMatched(bool matched)
 {
     type = 0;
 }
