@@ -26,7 +26,7 @@ void CandyCreator::dropCandies()
                     if(gameBoard.getCandy(i-1, j).getType() != 0) {
                         std::cout << "Swapping candies" << std::endl;
                         gameBoard.swapCandies(i, j, i-1, j);
-                        // swapped = true;
+                        swapped = true;
                     }
                 }
             }
