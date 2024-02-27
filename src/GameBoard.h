@@ -20,7 +20,7 @@ public:
     int getTileSize();
     int getMenuHeight();
     Candy& getCandy(int row, int col);
-    void removeCandy(int row, int col);
+    void addCandy(int row, int col);
 private:
     static const int ROWS = 16;
     static const int COLS = 8;

@@ -29,3 +29,9 @@ void CandyCreator::dropCandies()
         }
     }
 }
+
+void CandyCreator::createCandy(int col)
+{
+    if(gameBoard.getCandy(1, col).getType() != 0) return;
+    gameBoard.
+}

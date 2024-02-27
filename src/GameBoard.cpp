@@ -70,6 +70,9 @@ void GameBoard::swapCandies(int row1, int col1, int row2, int col2)
     grid[row2][col2].swapped(row1, col1);
     std::swap(grid[row1][col1], grid[row2][col2]);
 
-    
+}
+
+void GameBoard::addCandy(int row, int col)
+{
 
 }
