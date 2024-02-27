@@ -1,5 +1,6 @@
 #pragma once
 #include "GameBoard.h"
+#include "CandyRemover.h"
 
 class InputHandler 
 {

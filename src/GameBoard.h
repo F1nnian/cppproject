@@ -22,8 +22,8 @@ public:
     Candy& getCandy(int row, int col);
     void removeCandy(int row, int col);
 private:
-    static const int ROWS = 8;
-    static const int COLS = 3;
+    static const int ROWS = 16;
+    static const int COLS = 8;
     int tileSize;
     static const int menuHeight = 50;
     Candy grid[ROWS][COLS];

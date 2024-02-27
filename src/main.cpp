@@ -16,8 +16,6 @@ int main() {
     CandyRemover candyRemover(gameBoard);
     CandyCreator candyCreator(gameBoard);
 
-    candyRemover.checkForMatches();
-
     while (!WindowShouldClose()) {
         BeginDrawing();
         ClearBackground(RAYWHITE);

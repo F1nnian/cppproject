@@ -3,8 +3,6 @@
 
 CandyRemover::CandyRemover(GameBoard& gameBoard) : gameBoard(gameBoard) 
 {
-    checkForMatches();
-    removeMatches();
 }
 
 bool CandyRemover::checkForMatches()
