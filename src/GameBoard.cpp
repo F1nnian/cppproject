@@ -31,7 +31,7 @@ void GameBoard::initialize()
 {
     for (int i = 0; i < ROWS; ++i) {
         for (int j = 0; j < COLS; ++j) {
-            grid[i][j] = Candy(i, j);
+           addCandy(i, j);
         }
     }
 }
@@ -74,5 +74,16 @@ void GameBoard::swapCandies(int row1, int col1, int row2, int col2)
 
 void GameBoard::addCandy(int row, int col)
 {
+    grid[row][col] = Candy(row, col);
+}
 
+bool GameBoard::isFull()
+{
+    for (int j = 0; j < COLS; ++j) {
+        if(grid[0][j].getType() == 0)
+        {
+            return false;
+        }
+    }
+    return true;
 }

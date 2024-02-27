@@ -9,6 +9,16 @@ CandyCreator::CandyCreator(GameBoard& gameboard) : gameBoard(gameboard)
 void CandyCreator::refillBoard()
 {
     dropCandies();
+    while (!gameBoard.isFull())
+    {
+        for (int j = 0; j < gameBoard.getCols(); ++j) {
+            if(gameBoard.getCandy(0, j).getType() == 0)
+            {
+                createCandy(j);
+            }
+        }
+    }
+    
 }
 
 void CandyCreator::dropCandies()
@@ -32,7 +42,7 @@ void CandyCreator::dropCandies()
 
 void CandyCreator::createCandy(int col)
 {
-    if(gameBoard.getCandy(1, col).getType() != 0) return;
-    gameBoard.addCandy(1, col);
+    if(gameBoard.getCandy(0, col).getType() != 0) return;
+    gameBoard.addCandy(0, col);
     dropCandies();
 }
