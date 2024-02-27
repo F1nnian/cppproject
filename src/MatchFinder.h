@@ -2,10 +2,10 @@
 #include "GameBoard.h"
 #include <set>
 
-class CandyRemover
+class MatchFinder
 {   
 public:
-    CandyRemover(GameBoard& gameBoard);
+    MatchFinder(GameBoard& gameBoard);
     bool checkForMatches();
     void removeMatches();
 

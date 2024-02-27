@@ -1,5 +1,5 @@
 #include "GameBoard.h"
-#include "CandyRemover.h"
+#include "MatchFinder.h"
 #include "InputHandler.h"
 #include "CandyCreator.h"
 
@@ -13,7 +13,7 @@ int main() {
 
     GameBoard gameBoard(screenWidth, screenHeight);
     InputHandler inputHandler(gameBoard, screenWidth, screenHeight, gameBoard.getTileSize(), gameBoard.getMenuHeight(), gameBoard.getRows(), gameBoard.getCols());
-    CandyRemover candyRemover(gameBoard);
+    MatchFinder matchFinder(gameBoard);
     CandyCreator candyCreator(gameBoard);
 
     while (!WindowShouldClose()) {
@@ -24,9 +24,9 @@ int main() {
 
         EndDrawing();
 
-        if(candyRemover.checkForMatches());
+        if(matchFinder.checkForMatches());
         {
-            candyRemover.removeMatches();
+            matchFinder.removeMatches();
             candyCreator.refillBoard();
         }
 

@@ -31,8 +31,8 @@ void InputHandler::handleMouseInput(int mouseX, int mouseY) {
         gameBoard.deselectCandy(selectedRow, selectedCol);
         if(abs(row - selectedRow) + abs(col - selectedCol) == 1) {
             gameBoard.swapCandies(row, col, selectedRow, selectedCol);
-            CandyRemover candyRemover(gameBoard);
-            if(!candyRemover.checkForMatches())
+            MatchFinder matchFinder(gameBoard);
+            if(!matchFinder.checkForMatches())
             {
                 gameBoard.swapCandies(row, col, selectedRow, selectedCol);
             }

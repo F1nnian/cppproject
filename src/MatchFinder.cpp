@@ -1,11 +1,11 @@
-#include "CandyRemover.h"
+#include "MatchFinder.h"
 #include <iostream>
 
-CandyRemover::CandyRemover(GameBoard& gameBoard) : gameBoard(gameBoard) 
+MatchFinder::MatchFinder(GameBoard& gameBoard) : gameBoard(gameBoard) 
 {
 }
 
-bool CandyRemover::checkForMatches()
+bool MatchFinder::checkForMatches()
 {
     int ROWS = gameBoard.getRows();
     int COLS = gameBoard.getCols();
@@ -83,7 +83,7 @@ bool CandyRemover::checkForMatches()
     return !candiesToRemove.empty();
 }
 
-void CandyRemover::removeMatches()
+void MatchFinder::removeMatches()
 {
     for(auto candy : candiesToRemove) {
         candy->setMatched(true);
