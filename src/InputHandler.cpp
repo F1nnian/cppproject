@@ -38,7 +38,6 @@ void InputHandler::handleMouseInput(int mouseX, int mouseY) {
             selectedCol = col;
         }
     }
-    std::cout << "Selected row: " << selectedRow << " Selected col: " << selectedCol << std::endl;
 }
 
 void InputHandler::reset() {
