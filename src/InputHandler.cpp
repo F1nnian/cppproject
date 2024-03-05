@@ -48,4 +48,4 @@ void InputHandler::handleMouseInput(int mouseX, int mouseY) {
 void InputHandler::reset() {
     selectedRow = -1;
     selectedCol = -1;
-}                                                                               
+}

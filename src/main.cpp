@@ -1,3 +1,4 @@
+#include "Game.h"
 #include "GameBoard.h"
 #include "MatchFinder.h"
 #include "InputHandler.h"
@@ -8,11 +9,15 @@ const int screenHeight = 850;
 
 
 int main() {
+
+    Renderer renderer(screenWidth, screenHeight);
+    InputHandler inputHandler(gameBoard, screenWidth, screenHeight, gameBoard.getTileSize(), gameBoard.getMenuHeight(), gameBoard.getRows(), gameBoard.getCols());
+    Game game(inputHandler, renderer);
+
     InitWindow(screenWidth, screenHeight, "Candy Crush");
     SetTargetFPS(60);
 
     GameBoard gameBoard(screenWidth, screenHeight);
-    InputHandler inputHandler(gameBoard, screenWidth, screenHeight, gameBoard.getTileSize(), gameBoard.getMenuHeight(), gameBoard.getRows(), gameBoard.getCols());
     MatchFinder matchFinder(gameBoard);
     CandyCreator candyCreator(gameBoard);
 
