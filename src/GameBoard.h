@@ -4,6 +4,7 @@
 #include <cstdlib> 
 #include <ctime>
 #include <raylib.h>
+#include <vector>
 
 class GameBoard
 {
@@ -19,6 +20,7 @@ public:
     int getCols();
     int getTileSize();
     int getMenuHeight();
+    std::vector<std::vector<Candy>> getCandies();
     Candy& getCandy(int row, int col);
     void addCandy(int row, int col);
     bool isFull();
@@ -27,6 +29,6 @@ private:
     static const int COLS = 8;
     int tileSize;
     static const int menuHeight = 50;
-    Candy grid[ROWS][COLS];
+    std::vector<std::vector<Candy>> grid;
     Candy *selectedCandy = nullptr;
 };

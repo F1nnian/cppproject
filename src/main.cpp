@@ -11,7 +11,7 @@ const int screenHeight = 850;
 int main() {
 
     Renderer renderer(screenWidth, screenHeight);
-    InputHandler inputHandler(gameBoard, screenWidth, screenHeight, gameBoard.getTileSize(), gameBoard.getMenuHeight(), gameBoard.getRows(), gameBoard.getCols());
+    InputHandler inputHandler();
     Game game(inputHandler, renderer);
 
     InitWindow(screenWidth, screenHeight, "Candy Crush");

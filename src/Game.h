@@ -10,6 +10,5 @@ private:
 
 public:
     Game(InputHandler inputHandler, Renderer renderer);
-    ~Game();
     void run();
 };

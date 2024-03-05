@@ -22,11 +22,12 @@ Candy::Candy(int row, int col): row(row), col(col)
 
 void Candy::setSelected(bool selected)
 {
-    _selected = selected;
+    selected = selected;
 }
 
 void Candy::setMatched(bool matched)
 {
+    color = matched ? BLANK : color;
     type = 0;
 }
 
@@ -45,18 +46,13 @@ int Candy::getType()
     return type;
 }
 
+bool Candy::isSelected()
+{
+    return selected;
+}
+
 void Candy::swapped(int row, int col)
 {
     this->row = row;
     this->col = col;
-}
-
-void Candy::draw(int menuHeight, int tileSize)
-{
-    if(type == 0) color = BLANK;
-    Rectangle rect = {col*tileSize, row*tileSize+menuHeight, tileSize, tileSize};
-    DrawRectangleRec(rect, color);
-    if(_selected) {
-        DrawRectangleLinesEx(rect, 2, WHITE);
-    }
 }

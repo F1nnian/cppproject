@@ -15,6 +15,10 @@ int GameBoard::getCols() {
     return COLS;
 }
 
+std::vector<std::vector<Candy>> GameBoard::getCandies() {
+    return grid;
+}
+
 Candy& GameBoard::getCandy(int row, int col) {
     return grid[row][col];
 }
