@@ -11,9 +11,7 @@ public:
     int getRow();
     int getCol();
     int getType();
-    void swapped(int row, int col);       
-    void draw(int menuHeight, int tileSize);
-    bool isAdjacentTo(const Candy& other); 
+    void swapped(int row, int col);  
     void setMatched(bool matched);         
     bool isSelected();                      
 private:
