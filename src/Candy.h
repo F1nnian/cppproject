@@ -5,18 +5,18 @@
 class Candy
 {
 public:
-    Candy();
+    Candy() = default;
     Candy(int row, int col);
     void setSelected(bool selected);      
     int getRow();
     int getCol();
-    int getType();
+    int getType() const;
     void swapped(int row, int col);  
     void setMatched(bool matched);         
     bool isSelected();                      
 private:
     static const int NUM_COLORS = 6;
-    Color color;
+    // Color color;
     bool selected = false;
     int row;
     int col;

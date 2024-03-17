@@ -1,21 +1,24 @@
 #include "GameBoard.h"
 #include <iostream>
 
-GameBoard::GameBoard(int width, int height)
+GameBoard::GameBoard(int ROWS, int COLS) : _ROWS(ROWS), _COLS(COLS)
 {
-    tileSize = std::min(width / COLS, (height - menuHeight) / ROWS);
+    grid.resize(_ROWS);
+    for (int i = 0; i < _ROWS; ++i) {
+        grid[i].resize(_COLS);
+    }
     initialize();
 }
 
 int GameBoard::getRows() {
-    return ROWS;
+    return _ROWS;
 }
 
 int GameBoard::getCols() {
-    return COLS;
+    return _COLS;
 }
 
-std::vector<std::vector<Candy>> GameBoard::getCandies() {
+std::vector<std::vector<Candy>>& GameBoard::getCandies() {
     return grid;
 }
 
@@ -23,37 +26,13 @@ Candy& GameBoard::getCandy(int row, int col) {
     return grid[row][col];
 }
 
-int GameBoard::getTileSize() {
-    return tileSize;
-}
-
-int GameBoard::getMenuHeight() {
-    return menuHeight;
-}
-
 void GameBoard::initialize()
 {
-    for (int i = 0; i < ROWS; ++i) {
-        for (int j = 0; j < COLS; ++j) {
+    for (int i = 0; i < _ROWS; ++i) {
+        for (int j = 0; j < _COLS; ++j) {
            addCandy(i, j);
         }
     }
-}
-
-void GameBoard::draw()
-{
-    ClearBackground(RAYWHITE); // Background color
-
-    for (int i = 0; i < ROWS; ++i) {
-        for (int j = 0; j < COLS; ++j) {
-            int posX = j * tileSize;
-            int posY = i * tileSize + menuHeight;
-
-            grid[i][j].draw(menuHeight, tileSize);
-        }
-    }
-
-
 }
 
 void GameBoard::selectCandy(int row, int col) {
@@ -83,7 +62,7 @@ void GameBoard::addCandy(int row, int col)
 
 bool GameBoard::isFull()
 {
-    for (int j = 0; j < COLS; ++j) {
+    for (int j = 0; j < _COLS; ++j) {
         if(grid[0][j].getType() == 0)
         {
             return false;

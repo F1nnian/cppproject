@@ -1,9 +1,8 @@
 #include "CandyCreator.h"
 #include <iostream>
 
-CandyCreator::CandyCreator(GameBoard& gameboard) : gameBoard(gameboard)
+CandyCreator::CandyCreator(GameBoard& gameBoard) : gameBoard(gameBoard)
 {
-    refillBoard();
 }
 
 void CandyCreator::refillBoard()

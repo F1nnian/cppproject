@@ -1,12 +1,26 @@
 #include "Game.h"
+#include <iostream>
 
-Game::Game(InputHandler inputHandler, Renderer renderer)
+Game::Game(InputHandler& inputHandler, Renderer& renderer) : inputHandler(inputHandler), renderer(renderer), gameBoard(16, 8), matchFinder(MatchFinder()), candyCreator(gameBoard)
 {
-    inputHandler = inputHandler;
-    renderer = renderer;
 }
 
-Game::start()
+void Game::start()
 {
-    Renderer.init();
+    renderer.init();
+    run();
+}
+
+void Game::run()
+{
+    while (!WindowShouldClose())
+    {
+        // std::cout << "Game running" << std::endl;
+        renderer.renderGame(gameBoard.getCandies());
+        if(matchFinder.checkForMatches(gameBoard.getCandies()))
+        {
+            matchFinder.removeMatches();
+            candyCreator.refillBoard();
+        }
+    }
 }

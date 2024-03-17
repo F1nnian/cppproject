@@ -5,11 +5,10 @@
 class MatchFinder
 {   
 public:
-    MatchFinder(GameBoard& gameBoard);
-    bool checkForMatches();
+    MatchFinder();
+    bool checkForMatches(std::vector<std::vector<Candy>>& candies);
     void removeMatches();
 
 private:
-    GameBoard& gameBoard;
     std::set<Candy*> candiesToRemove;
 };

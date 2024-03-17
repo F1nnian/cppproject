@@ -1,21 +1,8 @@
 #pragma once
-#include "GameBoard.h"
-#include "MatchFinder.h"
 
 class InputHandler 
 {
 public:
-    InputHandler(GameBoard& gameBoard, int width, int height, int tileSize, int menuHeight, int ROWS, int COLS);
-    void handleMouseInput(int mouseX, int mouseY);
-    int getSelectedRow();
-    int getSelectedCol();
-    void reset();
+    bool selectCandyInput();
 private:
-    GameBoard& gameBoard;
-    int width;
-    int height;
-    int tileSize;
-    int menuHeight;
-    int ROWS;
-    int COLS;
 };
