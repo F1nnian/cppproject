@@ -4,6 +4,7 @@
 #include "MatchFinder.h"
 #include "CandyCreator.h"
 #include "GameBoard.h"
+#include "Score.h"
 
 class Game
 {   
@@ -17,4 +18,5 @@ private:
     MatchFinder matchFinder;
     CandyCreator candyCreator;
     GameBoard gameBoard;
+    Score score;
 };

@@ -1,7 +1,7 @@
 #include "Game.h"
 #include <iostream>
 
-Game::Game(InputHandler& inputHandler, Renderer& renderer) : inputHandler(inputHandler), renderer(renderer), gameBoard(16, 8), matchFinder(MatchFinder()), candyCreator(gameBoard,100)
+Game::Game(InputHandler& inputHandler, Renderer& renderer) : inputHandler(inputHandler), renderer(renderer), gameBoard(16, 8), score(Score()), matchFinder(MatchFinder()), candyCreator(gameBoard,100)
 {
 }
 
@@ -15,14 +15,13 @@ void Game::run()
 {
     while (!WindowShouldClose())
     {
-        renderer.renderGame(gameBoard.getCandies(), candyCreator.getCandyMap());
+        renderer.renderGame(gameBoard.getCandies(), candyCreator.getCandyMap(), score.getScore());
         if(inputHandler.selectCandyInput())
         {
             gameBoard.selectCandy(renderer.getScreenWidth(), renderer.getScreenHeight(), renderer.getMenuHeight(), renderer.getTileSize());
         }
-        if(matchFinder.checkForMatches(gameBoard.getCandies()))
+        if(matchFinder.removeMatches(gameBoard.getCandies(), score))
         {
-            matchFinder.removeMatches();
             candyCreator.refillBoard();
         }
     }

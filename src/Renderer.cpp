@@ -36,11 +36,11 @@ void Renderer::init()
     EndDrawing();
 }
 
-void Renderer::renderGame(std::vector<std::vector<Candy>> candies, std::map<int,int> candyMap)
+void Renderer::renderGame(std::vector<std::vector<Candy>> candies, std::map<int,int> candyMap, int score)
 {
     BeginDrawing();
     drawGameBoard(candies);
-    drawMenu(candyMap);
+    drawMenu(candyMap, score);
     EndDrawing();
 }
 
@@ -58,13 +58,14 @@ void Renderer::drawGameBoard(std::vector<std::vector<Candy>> candies){
     }
 }
 
-void Renderer::drawMenu(std::map<int,int> candyMap)
+void Renderer::drawMenu(std::map<int,int> candyMap, int score)
 {
     for(int i = 0; i < candyMap.size(); i++)
     {
         DrawRectangle(i*50, 10, menuHeight/2, menuHeight/2, getColor(i+1));
-        DrawText(std::to_string(candyMap[i]).c_str(), i*50+3, 10, 25, LIGHTGRAY);
+        DrawText(std::to_string(candyMap[i]).c_str(), i*50+3, 10, menuHeight/2, LIGHTGRAY);
     }
+    DrawText(std::to_string(score).c_str(), screenWidth-50, 10, menuHeight/2, LIGHTGRAY);
 }
 
 Color Renderer::getColor(int number)
