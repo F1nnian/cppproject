@@ -20,9 +20,15 @@ private:
     };
     Color getColor(int number);
     int menuHeight = 50;
+    void drawGameBoard(std::vector<std::vector<Candy>> candies);
+    void drawMenu(std::map<int,int> candyMap);
+    void drawCandy(int row, int col, int type, bool isSelected, int tileSize, int menuHeight);
 public:
     Renderer(int screenWidth, int screenHeight);
-    void renderGame(std::vector<std::vector<Candy>> candies);
+    void renderGame(std::vector<std::vector<Candy>> candies, std::map<int,int> candyMap);
     void init();
     int getTileSize();
+    int getMenuHeight();
+    int getScreenWidth();
+    int getScreenHeight();
 };

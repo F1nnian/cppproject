@@ -35,8 +35,37 @@ void GameBoard::initialize()
     }
 }
 
-void GameBoard::selectCandy(int row, int col) {
-    grid[row][col].setSelected(true);
+void GameBoard::selectCandy(int screenWidth, int screenHeight, int menuHeight, int tileSize) {
+        int mouseX = GetMouseX();
+        int mouseY = GetMouseY();
+        int row = (mouseY - menuHeight) / tileSize;
+        int col = mouseX / tileSize;
+        if(grid[row][col].getType() == 0)
+        {
+            return;
+        }
+
+        if(selectedRow == -1 && selectedCol == -1) {
+            grid[row][col].setSelected(true);
+            selectedRow = row;
+            selectedCol = col;
+        } else {
+            deselectCandy(selectedRow, selectedCol);
+            if(abs(row - selectedRow) + abs(col - selectedCol) == 1) {
+                swapCandies(row, col, selectedRow, selectedCol);
+                MatchFinder matchFinder;
+                if(!matchFinder.checkForMatches(grid))
+                {
+                    swapCandies(row, col, selectedRow, selectedCol);
+                }
+                selectedRow = -1;
+                selectedCol = -1;
+            }else {
+                grid[row][col].setSelected(true);
+                selectedRow = row;
+                selectedCol = col;
+            }
+        }
 }
 
 void GameBoard::deselectCandy(int row, int col) {
@@ -58,6 +87,11 @@ void GameBoard::swapCandies(int row1, int col1, int row2, int col2)
 void GameBoard::addCandy(int row, int col)
 {
     grid[row][col] = Candy(row, col);
+}
+
+void GameBoard::addCandy(int row, int col, int type)
+{
+    grid[row][col] = Candy(row, col, type);
 }
 
 bool GameBoard::isFull()

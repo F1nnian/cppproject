@@ -3,16 +3,17 @@
 
 Candy::Candy(int row, int col): row(row), col(col)
 {
-    this->type = std::rand() % NUM_COLORS + 1;
-    // switch (type) {
-    //     case 1: color = RED; break;
-    //     case 2: color = GREEN; break;
-    //     case 3: color = BLUE; break;
-    //     case 4: color = YELLOW; break;
-    //     case 5: color = ORANGE; break;
-    //     case 6: color = PURPLE; break;
-    //     default: color = WHITE; break;
-    // }
+    this->type = std::rand() % NUM_TYPES + 1;
+}
+
+Candy::Candy(int row, int col, int type): row(row), col(col), type(type)
+{
+    this->type = type;
+}
+
+int Candy::getNumTypes()
+{
+    return NUM_TYPES;
 }
 
 void Candy::setSelected(bool selected)
