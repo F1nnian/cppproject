@@ -1,5 +1,4 @@
 #include "MatchFinder.h"
-#include <iostream>
 
 bool MatchFinder::checkForMatches(std::vector<std::vector<Candy>>& candies)
 {
@@ -34,33 +33,39 @@ bool MatchFinder::checkForMatches(std::vector<std::vector<Candy>>& candies)
         }
     }
 
-    // Count vertical pairs and mark for removal
-    for (int j = 0; j < cols; ++j) {
-        int count = 1; // Initialize count for each column
-        for (int i = 1; i < rows; ++i) {
-            if (candies[i][j].getType() == candies[i - 1][j].getType() && candies[i][j].getType() != 0) {
+    for (int j = 0; j < cols; ++j) 
+    {
+        int count = 1;
+        for (int i = 1; i < rows; ++i) 
+        {
+            if (candies[i][j].getType() == candies[i - 1][j].getType() && candies[i][j].getType() != 0) 
+            {
                 ++count;
-                if (count >= 3) {
-                    // Only add to candiesToRemove when a valid match is found
-                    if (count == 3) {
+                if (count >= 3) 
+                {
+                    if (count == 3) 
+                    {
                         candiesToRemove.insert({&candies[i - 2][j], &candies[i - 1][j]});
                     }
                     candiesToRemove.insert({&candies[i][j], &candies[i - 1][j]});
                     validMatchFound = true;
                 }
-            } else {
-                if (count >= 3) {
+            } else 
+            {
+                if (count >= 3) 
+                {
                     countMap[count]++;
                 }
-                count = 1; // Reset count for the next series of candies
+                count = 1;
             }
         }
-        if (count >= 3) {
-            countMap[count]++; // Increment count for the last candy type in this column
+        if (count >= 3) 
+        {
+            countMap[count]++;
         }
     }
 
-    return validMatchFound; // Return true if at least one valid match is found
+    return validMatchFound;
 }
 
 bool MatchFinder::removeMatches(std::vector<std::vector<Candy>>& candies, Score& score)
@@ -71,12 +76,13 @@ bool MatchFinder::removeMatches(std::vector<std::vector<Candy>>& candies, Score&
     }
     else
     {
-        for(auto candy : candiesToRemove) {
+        for(auto candy : candiesToRemove) 
+        {
             candy->setMatched(true);
         }
         candiesToRemove.clear();
-        for (auto& pair : countMap) {
-            std::cout << "Removing " << pair.second << " pairs of " << pair.first << " candies" << std::endl;
+        for (auto& pair : countMap) 
+        {
             for(int i = 0; i < pair.second; i++)
             {
                 score.addScore(pair.first);
@@ -92,29 +98,37 @@ bool MatchFinder::checkForPossibleMatches(std::vector<std::vector<Candy>>& candi
     int cols = candies[0].size();
     bool possibleMatchFound = false;
 
-    // Iterate through each cell on the board
-    for (int i = 0; i < rows; ++i) {
-        for (int j = 0; j < cols; ++j) {
-            // Check swapping with the right neighbor
+    for (int i = 0; i < rows; ++i) 
+    {
+        for (int j = 0; j < cols; ++j) 
+        {
             if (j < cols - 1) {
                 std::vector<std::vector<Candy>> tempCandies = candies;
-                std::swap(tempCandies[i][j], tempCandies[i][j + 1]);
-                if (hasMatch(tempCandies)) {
-                    possibleMatchFound = true;
-                    break;
-                }
+                if(candies[i][j].getType() != 0 || candies[i][j+1].getType() != 0)
+                {
+                    std::swap(tempCandies[i][j], tempCandies[i][j + 1]);
+                    if (hasMatch(tempCandies)) {
+                        possibleMatchFound = true;
+                        break;
+                    }
+                }  
             }
-            // Check swapping with the bottom neighbor
-            if (i < rows - 1) {
+            if (i < rows - 1) 
+            {
                 std::vector<std::vector<Candy>> tempCandies = candies;
-                std::swap(tempCandies[i][j], tempCandies[i + 1][j]);
-                if (hasMatch(tempCandies)) {
-                    possibleMatchFound = true;
-                    break;
+                if(candies[i][j].getType() != 0 || candies[i+1][j].getType() != 0)
+                {
+                    std::swap(tempCandies[i][j], tempCandies[i + 1][j]);
+                    if (hasMatch(tempCandies)) 
+                    {
+                        possibleMatchFound = true;
+                        break;
+                    }
                 }
             }
         }
-        if (possibleMatchFound) {
+        if (possibleMatchFound) 
+        {
             break;
         }
     }
@@ -122,27 +136,29 @@ bool MatchFinder::checkForPossibleMatches(std::vector<std::vector<Candy>>& candi
     return possibleMatchFound;
 }
 
-bool MatchFinder::hasMatch(std::vector<std::vector<Candy>>& candies) {
+bool MatchFinder::hasMatch(std::vector<std::vector<Candy>>& candies) 
+{
     int rows = candies.size();
     int cols = candies[0].size();
-
-    // Check horizontal matches
-    for (int i = 0; i < rows; ++i) {
-        for (int j = 0; j < cols - 2; ++j) {
-            if (candies[i][j].getType() != 0 && candies[i][j].getType() == candies[i][j + 1].getType() && candies[i][j].getType() == candies[i][j + 2].getType()) {
-                return true; // Horizontal match found
+    for (int i = 0; i < rows; ++i) 
+    {
+        for (int j = 0; j < cols - 2; ++j) 
+        {
+            if (candies[i][j].getType() != 0 && candies[i][j].getType() == candies[i][j + 1].getType() && candies[i][j].getType() == candies[i][j + 2].getType()) 
+            {
+                return true;
             }
         }
     }
-
-    // Check vertical matches
-    for (int j = 0; j < cols; ++j) {
-        for (int i = 0; i < rows - 2; ++i) {
-            if (candies[i][j].getType() != 0 && candies[i][j].getType() == candies[i + 1][j].getType() && candies[i][j].getType() == candies[i + 2][j].getType()) {
-                return true; // Vertical match found
+    for (int j = 0; j < cols; ++j) 
+    {
+        for (int i = 0; i < rows - 2; ++i) 
+        {
+            if (candies[i][j].getType() != 0 && candies[i][j].getType() == candies[i + 1][j].getType() && candies[i][j].getType() == candies[i + 2][j].getType()) 
+            {
+                return true;
             }
         }
     }
-
     return false; // No matches found
 }

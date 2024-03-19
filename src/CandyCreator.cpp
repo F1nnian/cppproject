@@ -1,5 +1,4 @@
 #include "CandyCreator.h"
-#include <iostream>
 
 CandyCreator::CandyCreator(GameBoard& gameBoard, int refillCandies) : gameBoard(gameBoard), refillCandies(refillCandies)
 {
@@ -37,12 +36,10 @@ void CandyCreator::refillBoard()
             }
         }
     }
-    std::cout << candyMap[0] << " " << candyMap[1] << " " << candyMap[2] << " " << candyMap[3] << " " << candyMap[4] << " " << candyMap[5] << std::endl;
 }
 
 void CandyCreator::dropCandies()
 {
-    std::cout << "Dropping candies" << std::endl;
     bool swapped = true;
     while(swapped)
     {

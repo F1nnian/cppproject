@@ -3,6 +3,7 @@
 #include <vector>
 #include "Candy.h"
 #include <map>
+#include <iostream>
 
 class Renderer
 {

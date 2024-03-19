@@ -1,5 +1,4 @@
 #include "Renderer.h"
-#include <iostream>
 
 Renderer::Renderer(int screenWidth, int screenHeight)
 {

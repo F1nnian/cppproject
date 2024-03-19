@@ -1,5 +1,4 @@
 #include "GameBoard.h"
-#include <iostream>
 
 GameBoard::GameBoard(int ROWS, int COLS) : _ROWS(ROWS), _COLS(COLS)
 {

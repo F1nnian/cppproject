@@ -1,5 +1,4 @@
 #include "Candy.h"
-#include <iostream>
 
 Candy::Candy(int row, int col): row(row), col(col)
 {

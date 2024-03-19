@@ -1,7 +1,6 @@
 #include "Game.h"
-#include <iostream>
 
-Game::Game(InputHandler& inputHandler, Renderer& renderer) : inputHandler(inputHandler), renderer(renderer), gameBoard(8, 4), score(Score()), matchFinder(MatchFinder()), candyCreator(gameBoard,10)
+Game::Game(InputHandler& inputHandler, Renderer& renderer) : inputHandler(inputHandler), renderer(renderer), gameBoard(16, 8), score(Score()), matchFinder(MatchFinder()), candyCreator(gameBoard,100)
 {
 }
 
@@ -37,5 +36,4 @@ void Game::run()
 void Game::gameOver()
 {
     renderer.renderGameOver(score.getScore());
-    std::cout << "Game Over!" << std::endl;
 }
