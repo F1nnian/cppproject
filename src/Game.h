@@ -19,4 +19,5 @@ private:
     CandyCreator candyCreator;
     GameBoard gameBoard;
     Score score;
+    void gameOver();
 };

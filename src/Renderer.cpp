@@ -7,9 +7,9 @@ Renderer::Renderer(int screenWidth, int screenHeight)
     this->screenHeight = screenHeight;
 }
 
-int Renderer::getTileSize()
+int Renderer::getTileSize(int rows, int cols)
 {
-    return std::min(screenWidth/8, (screenHeight-50)/16);
+    return std::min(screenWidth/cols, (screenHeight-menuHeight)/rows);
 }
 
 int Renderer::getMenuHeight()
@@ -45,7 +45,7 @@ void Renderer::renderGame(std::vector<std::vector<Candy>> candies, std::map<int,
 }
 
 void Renderer::drawGameBoard(std::vector<std::vector<Candy>> candies){
-    ClearBackground(RAYWHITE);
+    ClearBackground(BLACK);
     int rows = candies.size();
     int cols = candies[0].size();
     int tileSize = std::min(screenWidth/cols, (screenHeight-menuHeight)/rows);
@@ -65,7 +65,7 @@ void Renderer::drawMenu(std::map<int,int> candyMap, int score)
         DrawRectangle(i*50, 10, menuHeight/2, menuHeight/2, getColor(i+1));
         DrawText(std::to_string(candyMap[i]).c_str(), i*50+3, 10, menuHeight/2, LIGHTGRAY);
     }
-    DrawText(std::to_string(score).c_str(), screenWidth-50, 10, menuHeight/2, LIGHTGRAY);
+    DrawText(std::to_string(score).c_str(), screenWidth-75, 10, menuHeight/2, LIGHTGRAY);
 }
 
 Color Renderer::getColor(int number)
@@ -80,4 +80,13 @@ void Renderer::drawCandy(int row, int col, int type, bool isSelected, int tileSi
     if(isSelected) {
         DrawRectangleLinesEx(rect, 2, WHITE);
     }
+}
+
+void Renderer::renderGameOver(int score)
+{
+    BeginDrawing();
+    ClearBackground(BLACK);
+    DrawText("Game Over", screenWidth/2 - 100, screenHeight/2 - 50, 40, LIGHTGRAY);
+    DrawText(("Score: " + std::to_string(score)).c_str(), screenWidth/2 - 100, screenHeight/2, 40, LIGHTGRAY);
+    EndDrawing();
 }

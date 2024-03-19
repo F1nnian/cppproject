@@ -27,8 +27,9 @@ public:
     Renderer(int screenWidth, int screenHeight);
     void renderGame(std::vector<std::vector<Candy>> candies, std::map<int,int> candyMap, int score);
     void init();
-    int getTileSize();
+    int getTileSize(int rows, int cols);
     int getMenuHeight();
     int getScreenWidth();
     int getScreenHeight();
+    void renderGameOver(int score);
 };
