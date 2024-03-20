@@ -34,20 +34,21 @@ void GameBoard::initialize()
     }
 }
 
-void GameBoard::selectCandy(int screenWidth, int screenHeight, int menuHeight, int tileSize) {
+bool GameBoard::selectCandy(int screenWidth, int screenHeight, int menuHeight, int tileSize) {
         int mouseX = GetMouseX();
         int mouseY = GetMouseY();
         int row = (mouseY - menuHeight) / tileSize;
         int col = mouseX / tileSize;
         if(grid[row][col].getType() == 0)
         {
-            return;
+            return false;
         }
 
         if(selectedRow == -1 && selectedCol == -1) {
             grid[row][col].setSelected(true);
             selectedRow = row;
             selectedCol = col;
+            return true;
         } else {
             deselectCandy(selectedRow, selectedCol);
             if(abs(row - selectedRow) + abs(col - selectedCol) == 1) {
@@ -59,10 +60,12 @@ void GameBoard::selectCandy(int screenWidth, int screenHeight, int menuHeight, i
                 }
                 selectedRow = -1;
                 selectedCol = -1;
+                return false;
             }else {
                 grid[row][col].setSelected(true);
                 selectedRow = row;
                 selectedCol = col;
+                return true;
             }
         }
 }

@@ -14,7 +14,7 @@ public:
     GameBoard(int ROWS, int COLS);
     void initialize();
     void swapCandies(int row1, int col1, int row2, int col2);
-    void selectCandy(int screenWidth, int screenHeight, int menuHeight, int tileSize);
+    bool selectCandy(int screenWidth, int screenHeight, int menuHeight, int tileSize);
     void deselectCandy(int row, int col);
     int getRows();
     int getCols();

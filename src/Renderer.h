@@ -19,11 +19,13 @@ private:
         {5, ORANGE},
         {6, PURPLE},
     };
+    std::map<int, Texture2D> textureMap;
     Color getColor(int number);
     int menuHeight = 50;
     void drawGameBoard(std::vector<std::vector<Candy>> candies);
     void drawMenu(std::map<int,int> candyMap, int score);
-    void drawCandy(int row, int col, int type, bool isSelected, int tileSize, int menuHeight);
+    void drawCandy(float row, int col, int type, bool isSelected, int tileSize, int menuHeight);
+    void loadTextures();
 public:
     Renderer(int screenWidth, int screenHeight);
     void renderGame(std::vector<std::vector<Candy>> candies, std::map<int,int> candyMap, int score);

@@ -5,6 +5,7 @@
 #include "CandyCreator.h"
 #include "GameBoard.h"
 #include "Score.h"
+#include "AudioRenderer.h"
 
 class Game
 {   
@@ -19,5 +20,6 @@ private:
     CandyCreator candyCreator;
     GameBoard gameBoard;
     Score score;
+    AudioRenderer audioRenderer;
     void gameOver();
 };

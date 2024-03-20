@@ -1,12 +1,14 @@
 #include "Game.h"
 
-Game::Game(InputHandler& inputHandler, Renderer& renderer) : inputHandler(inputHandler), renderer(renderer), gameBoard(16, 8), score(Score()), matchFinder(MatchFinder()), candyCreator(gameBoard,100)
+Game::Game(InputHandler& inputHandler, Renderer& renderer) : inputHandler(inputHandler), renderer(renderer), gameBoard(16, 8), score(Score()), matchFinder(MatchFinder()), candyCreator(gameBoard,100), audioRenderer(AudioRenderer())
 {
 }
 
 void Game::start()
 {
     renderer.init();
+    audioRenderer.loadSounds();
+    audioRenderer.startMusic();
     run();
 }
 
@@ -14,9 +16,11 @@ void Game::run()
 {
     while (!WindowShouldClose())
     {
+        audioRenderer.updateMusic();
         if(!matchFinder.checkForPossibleMatches(gameBoard.getCandies()))
         {
             gameOver();
+            break;
         }
         else
         {
@@ -24,10 +28,14 @@ void Game::run()
         }
         if(inputHandler.selectCandyInput())
         {
-            gameBoard.selectCandy(renderer.getScreenWidth(), renderer.getScreenHeight(), renderer.getMenuHeight(), renderer.getTileSize(gameBoard.getRows(), gameBoard.getCols()));
+            if(gameBoard.selectCandy(renderer.getScreenWidth(), renderer.getScreenHeight(), renderer.getMenuHeight(), renderer.getTileSize(gameBoard.getRows(), gameBoard.getCols())))
+            {
+                audioRenderer.playSelect();
+            }
         }
         if(matchFinder.removeMatches(gameBoard.getCandies(), score))
         {
+            audioRenderer.playMatch();
             candyCreator.refillBoard();
         }
     }
@@ -35,5 +43,9 @@ void Game::run()
 
 void Game::gameOver()
 {
-    renderer.renderGameOver(score.getScore());
+    audioRenderer.playGameOver();
+    while (!WindowShouldClose())
+    {
+        renderer.renderGameOver(score.getScore());
+    }
 }
