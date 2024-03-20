@@ -13,9 +13,11 @@ public:
     void createCandy(int col);
     bool areCandiesLeft();
     std::map<int, int> getCandyMap();
+    void reset();
 private:
     GameBoard& gameBoard;
     int refillCandies;
     std::map<int, int> candyMap;
     const int NUM_TYPES = Candy::getNumTypes();
+    void createCandyMap();
 };

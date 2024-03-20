@@ -6,7 +6,7 @@ public:
     Score() = default;
     void addScore(int candiesMatched);
     int getScore();
-    void resetScore();
+    void reset();
 private:
     int score = 0;
 };

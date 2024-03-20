@@ -2,6 +2,11 @@
 
 CandyCreator::CandyCreator(GameBoard& gameBoard, int refillCandies) : gameBoard(gameBoard), refillCandies(refillCandies)
 {
+    createCandyMap();
+}
+
+void CandyCreator::createCandyMap()
+{
     for (int i = 0; i < refillCandies; ++i) 
     {
         int randomType = std::rand() % NUM_TYPES;
@@ -72,4 +77,10 @@ void CandyCreator::createCandy(int col)
     gameBoard.addCandy(0, col, randomType+1);
     candyMap[randomType]--;
     dropCandies();
+}
+
+void CandyCreator::reset()
+{
+    candyMap.clear();
+    createCandyMap();
 }

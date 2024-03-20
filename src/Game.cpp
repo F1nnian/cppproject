@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game(InputHandler& inputHandler, Renderer& renderer) : inputHandler(inputHandler), renderer(renderer), gameBoard(16, 8), score(Score()), matchFinder(MatchFinder()), candyCreator(gameBoard,100), audioRenderer(AudioRenderer())
+Game::Game(InputHandler& inputHandler, Renderer& renderer, AudioRenderer& audioRenderer) : inputHandler(inputHandler), renderer(renderer), audioRenderer(audioRenderer), gameBoard(ROWS, COLS), score(Score()), matchFinder(MatchFinder()), candyCreator(gameBoard, REFILL_CANDIES)
 {
 }
 
@@ -47,5 +47,18 @@ void Game::gameOver()
     while (!WindowShouldClose())
     {
         renderer.renderGameOver(score.getScore());
+        if(inputHandler.playAgainInput())
+        {
+            reset();
+            break;
+        }
     }
+}
+
+void Game::reset()
+{
+    gameBoard.reset();
+    score.reset();
+    candyCreator.reset();
+    run();
 }

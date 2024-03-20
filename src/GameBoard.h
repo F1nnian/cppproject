@@ -23,6 +23,7 @@ public:
     void addCandy(int row, int col);
     void addCandy(int row, int col, int type);
     bool isFull();
+    void reset();
 private:
     const int _ROWS;
     const int _COLS;

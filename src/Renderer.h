@@ -26,6 +26,7 @@ private:
     void drawMenu(std::map<int,int> candyMap, int score);
     void drawCandy(float row, int col, int type, bool isSelected, int tileSize, int menuHeight);
     void loadTextures();
+    void drawCenteredText(const char* text, int fontSize, int posY, Color color);
 public:
     Renderer(int screenWidth, int screenHeight);
     void renderGame(std::vector<std::vector<Candy>> candies, std::map<int,int> candyMap, int score);

@@ -10,7 +10,7 @@ void Score::addScore(int candiesMatched)
     score += candiesMatched * 10 * candiesMatched/3 * candiesMatched;
 }
 
-void Score::resetScore()
+void Score::reset()
 {
     score = 0;
 }

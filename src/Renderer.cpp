@@ -107,7 +107,15 @@ void Renderer::renderGameOver(int score)
 {
     BeginDrawing();
     ClearBackground(BLACK);
-    DrawText("Game Over", screenWidth/2 - 100, screenHeight/2 - 50, 40, LIGHTGRAY);
-    DrawText(("Score: " + std::to_string(score)).c_str(), screenWidth/2 - 100, screenHeight/2, 40, LIGHTGRAY);
+    drawCenteredText("Game Over", 40, screenHeight/2-150, LIGHTGRAY);
+    drawCenteredText(("Score: " + std::to_string(score)).c_str(), 40, screenHeight/2-100, LIGHTGRAY);
+    drawCenteredText("Press any key", 40, screenHeight/2+100, LIGHTGRAY);
+    drawCenteredText("to restart", 40, screenHeight/2+150, LIGHTGRAY);
     EndDrawing();
+}
+
+void Renderer::drawCenteredText(const char* text, int fontSize, int posY, Color color)
+{
+    int textWidth = MeasureText(text, fontSize);
+    DrawText(text, screenWidth/2 - textWidth/2, posY, fontSize, color);
 }

@@ -11,3 +11,13 @@ bool InputHandler::selectCandyInput()
     }
     return false;
 }
+
+bool InputHandler::playAgainInput()
+{
+    for (int key = 0; key < KEY_KB_MENU; key++) {
+            if (IsKeyDown(key)) {
+                return true;
+            }
+        }
+    return false;
+}

@@ -106,3 +106,13 @@ bool GameBoard::isFull()
     }
     return true;
 }
+
+void GameBoard::reset()
+{
+    grid.clear();
+    grid.resize(_ROWS);
+    for (int i = 0; i < _ROWS; ++i) {
+        grid[i].resize(_COLS);
+    }
+    initialize();
+}
