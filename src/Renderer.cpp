@@ -77,7 +77,10 @@ void Renderer::drawMenu(std::map<int,int> candyMap, int score)
     for(int i = 0; i < candyMap.size(); i++)
     {
         drawCandy(0, i, i+1, false, menuHeight, 0);
-        DrawText(std::to_string(candyMap[i]).c_str(), i*50+17.5, 10, menuHeight/2, BLACK);
+        const char* text = std::to_string(candyMap[i]).c_str();
+        int textWidth = MeasureText(text, menuHeight/2);
+        DrawText(text, (i*2+1)*menuHeight/2-textWidth/2, menuHeight/2-menuHeight/4, menuHeight/2, BLACK);
+        // DrawText(std::to_string(candyMap[i]).c_str(), i*50+17.5, 10, menuHeight/2, BLACK);
     }
     DrawText(std::to_string(score).c_str(), screenWidth-75, 10, menuHeight/2, LIGHTGRAY);
 }
