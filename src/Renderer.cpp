@@ -81,7 +81,9 @@ void Renderer::drawMenu(std::map<int,int> candyMap, int score)
         int textWidth = MeasureText(text, menuHeight/2);
         DrawText(text, (i*2+1)*menuHeight/2-textWidth/2, menuHeight/2-menuHeight/4, menuHeight/2, BLACK);
     }
-    DrawText(std::to_string(score).c_str(), screenWidth-75, 10, menuHeight/2, LIGHTGRAY);
+    const char* scoreText = std::to_string(score).c_str();
+    int textWidth = MeasureText(scoreText, menuHeight/2);
+    DrawText(scoreText, screenWidth-textWidth-5, menuHeight/2-menuHeight/4, menuHeight/2, LIGHTGRAY);
 }
 
 Color Renderer::getColor(int number)
