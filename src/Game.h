@@ -16,7 +16,7 @@ public:
 private:
     const int ROWS = 16;
     const int COLS = 8;
-    const int REFILL_CANDIES = 100;
+    const int REFILL_CANDIES = 150;
     InputHandler& inputHandler;
     Renderer& renderer;
     MatchFinder matchFinder;

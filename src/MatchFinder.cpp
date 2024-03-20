@@ -5,16 +5,14 @@ bool MatchFinder::checkForMatches(std::vector<std::vector<Candy>>& candies)
     int rows = candies.size();
     int cols = candies[0].size();
 
-    bool validMatchFound = false; // Flag to track if a valid match is found
+    bool validMatchFound = false; 
 
-    // Count horizontal pairs and mark for removal
     for (int i = 0; i < rows; ++i) {
-        int count = 1; // Initialize count for each row
+        int count = 1;
         for (int j = 1; j < cols; ++j) {
             if (candies[i][j].getType() == candies[i][j - 1].getType() && candies[i][j].getType() != 0) {
                 ++count;
                 if (count >= 3) {
-                    // Only add to candiesToRemove when a valid match is found
                     if (count == 3) {
                         candiesToRemove.insert({&candies[i][j - 2], &candies[i][j - 1]});
                     }
@@ -25,11 +23,11 @@ bool MatchFinder::checkForMatches(std::vector<std::vector<Candy>>& candies)
                 if (count >= 3) {
                     countMap[count]++;
                 }
-                count = 1; // Reset count for the next series of candies
+                count = 1;
             }
         }
         if (count >= 3) {
-            countMap[count]++; // Increment count for the last candy type in this row
+            countMap[count]++;
         }
     }
 
@@ -104,7 +102,7 @@ bool MatchFinder::checkForPossibleMatches(std::vector<std::vector<Candy>>& candi
         {
             if (j < cols - 1) {
                 std::vector<std::vector<Candy>> tempCandies = candies;
-                if(candies[i][j].getType() != 0 || candies[i][j+1].getType() != 0)
+                if(candies[i][j].getType() != 0 && candies[i][j+1].getType() != 0)
                 {
                     std::swap(tempCandies[i][j], tempCandies[i][j + 1]);
                     if (hasMatch(tempCandies)) {
@@ -116,7 +114,7 @@ bool MatchFinder::checkForPossibleMatches(std::vector<std::vector<Candy>>& candi
             if (i < rows - 1) 
             {
                 std::vector<std::vector<Candy>> tempCandies = candies;
-                if(candies[i][j].getType() != 0 || candies[i+1][j].getType() != 0)
+                if(candies[i][j].getType() != 0 && candies[i+1][j].getType() != 0)
                 {
                     std::swap(tempCandies[i][j], tempCandies[i + 1][j]);
                     if (hasMatch(tempCandies)) 
