@@ -23,7 +23,7 @@ This repository contains a student project implementing a Candy Crush inspired g
 3. Open Visual Studio Code and install the CMake extension
 4. Select Compiler and launch with CMake (usually works by pressing <SHIFT + F5>)
 
-### Use prebuilt .exe
+### Use prebuilt .exe (built on Windows 11)
 
 1. Navigate to [Releases](https://github.com/F1nnian/cppproject/releases/) and download the zip of the newest Releases 
 2. Unzip the folder
