@@ -9,12 +9,10 @@ private:
     Sound match;
     Sound fall;
     Sound gameOver;
+
 public:
-    AudioRenderer();
     void playSelect();
-    void playSwap();
     void playMatch();
-    void playFall();
     void playGameOver();
     void loadSounds();
     void startMusic();

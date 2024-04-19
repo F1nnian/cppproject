@@ -6,8 +6,8 @@
 const int screenWidth = 400;
 const int screenHeight = 850;
 
-
-int main() {
+int main()
+{
     Renderer renderer(screenWidth, screenHeight);
     AudioRenderer audioRenderer;
     InputHandler inputHandler;

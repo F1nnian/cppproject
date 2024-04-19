@@ -23,13 +23,14 @@ private:
     Color getColor(int number);
     int menuHeight = 50;
     void drawGameBoard(std::vector<std::vector<Candy>> candies);
-    void drawMenu(std::map<int,int> candyMap, int score);
+    void drawMenu(std::map<int, int> candyMap, int score);
     void drawCandy(float row, int col, int type, bool isSelected, int tileSize, int menuHeight);
     void loadTextures();
-    void drawCenteredText(const char* text, int fontSize, int posY, Color color);
+    void drawCenteredText(const char *text, int fontSize, int posY, Color color);
+
 public:
     Renderer(int screenWidth, int screenHeight);
-    void renderGame(std::vector<std::vector<Candy>> candies, std::map<int,int> candyMap, int score);
+    void renderGame(std::vector<std::vector<Candy>> candies, std::map<int, int> candyMap, int score);
     void init();
     int getTileSize(int rows, int cols);
     int getMenuHeight();

@@ -14,10 +14,12 @@ bool InputHandler::selectCandyInput()
 
 bool InputHandler::playAgainInput()
 {
-    for (int key = 0; key < KEY_KB_MENU; key++) {
-            if (IsKeyDown(key)) {
-                return true;
-            }
+    for (int key = 0; key < KEY_KB_MENU; key++)
+    {
+        if (IsKeyDown(key))
+        {
+            return true;
         }
+    }
     return false;
 }

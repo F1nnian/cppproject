@@ -1,11 +1,6 @@
 #include "AudioRenderer.h"
 #include <iostream>
 
-AudioRenderer::AudioRenderer()
-{
-    
-}
-
 void AudioRenderer::loadSounds()
 {
     InitAudioDevice();
@@ -14,7 +9,7 @@ void AudioRenderer::loadSounds()
     gameOver = LoadSound("../resources/audio/gameover.wav");
     SetSoundVolume(gameOver, 0.1f);
     music = LoadMusicStream("../resources/audio/music.mp3");
-    SetMusicVolume(music, 0.01f);
+    SetMusicVolume(music, 0.1f);
 }
 
 void AudioRenderer::playSelect()

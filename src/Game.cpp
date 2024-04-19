@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game(InputHandler& inputHandler, Renderer& renderer, AudioRenderer& audioRenderer) : inputHandler(inputHandler), renderer(renderer), audioRenderer(audioRenderer), gameBoard(ROWS, COLS), score(Score()), matchFinder(MatchFinder()), candyCreator(gameBoard, REFILL_CANDIES)
+Game::Game(InputHandler &inputHandler, Renderer &renderer, AudioRenderer &audioRenderer) : inputHandler(inputHandler), renderer(renderer), audioRenderer(audioRenderer), gameBoard(ROWS, COLS), score(Score()), matchFinder(MatchFinder()), candyCreator(gameBoard, REFILL_CANDIES)
 {
 }
 
@@ -17,7 +17,7 @@ void Game::run()
     while (!WindowShouldClose())
     {
         audioRenderer.updateMusic();
-        if(!matchFinder.checkForPossibleMatches(gameBoard.getCandies()))
+        if (!matchFinder.checkForPossibleMatches(gameBoard.getCandies()))
         {
             gameOver();
             break;
@@ -26,14 +26,14 @@ void Game::run()
         {
             renderer.renderGame(gameBoard.getCandies(), candyCreator.getCandyMap(), score.getScore());
         }
-        if(inputHandler.selectCandyInput())
+        if (inputHandler.selectCandyInput())
         {
-            if(gameBoard.selectCandy(renderer.getScreenWidth(), renderer.getScreenHeight(), renderer.getMenuHeight(), renderer.getTileSize(gameBoard.getRows(), gameBoard.getCols())))
+            if (gameBoard.selectCandy(renderer.getScreenWidth(), renderer.getScreenHeight(), renderer.getMenuHeight(), renderer.getTileSize(gameBoard.getRows(), gameBoard.getCols())))
             {
                 audioRenderer.playSelect();
             }
         }
-        if(matchFinder.removeMatches(gameBoard.getCandies(), score))
+        if (matchFinder.removeMatches(gameBoard.getCandies(), score))
         {
             audioRenderer.playMatch();
             candyCreator.refillBoard();
@@ -47,7 +47,7 @@ void Game::gameOver()
     while (!WindowShouldClose())
     {
         renderer.renderGameOver(score.getScore());
-        if(inputHandler.playAgainInput())
+        if (inputHandler.playAgainInput())
         {
             reset();
             break;

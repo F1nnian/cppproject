@@ -1,11 +1,11 @@
 #include "Candy.h"
 
-Candy::Candy(int row, int col): row(row), col(col)
+Candy::Candy(int row, int col) : row(row), col(col)
 {
     this->type = std::rand() % NUM_TYPES + 1;
 }
 
-Candy::Candy(int row, int col, int type): row(row), col(col), type(type)
+Candy::Candy(int row, int col, int type) : row(row), col(col), type(type)
 {
     this->type = type;
 }
@@ -22,7 +22,6 @@ void Candy::setSelected(bool selected)
 
 void Candy::setMatched(bool matched)
 {
-    // color = matched ? BLANK : color;
     this->type = 0;
 }
 

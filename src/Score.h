@@ -7,6 +7,7 @@ public:
     void addScore(int candiesMatched);
     int getScore();
     void reset();
+
 private:
     int score = 0;
 };
