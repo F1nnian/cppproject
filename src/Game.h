@@ -15,9 +15,9 @@ public:
     void run();
 
 private:
-    const int ROWS = 16;
-    const int COLS = 8;
-    const int REFILL_CANDIES = 150;
+    const int ROWS = 16;            // Number of rows on the game board
+    const int COLS = 8;             // Number of columns on the game board
+    const int REFILL_CANDIES = 150; // Number of candies to refill the board
     InputHandler &inputHandler;
     Renderer &renderer;
     MatchFinder matchFinder;

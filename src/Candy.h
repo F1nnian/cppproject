@@ -18,7 +18,7 @@ public:
     static int getNumTypes();
 
 private:
-    static const int NUM_TYPES = 6;
+    static const int NUM_TYPES = 6; // Number of candy types
     bool selected = false;
     int row;
     int col;

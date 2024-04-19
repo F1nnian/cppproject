@@ -1,3 +1,5 @@
+// This class is the main entry point for the game. It initializes game components and starts the game loop.
+
 #include "Game.h"
 #include "GameBoard.h"
 #include "InputHandler.h"

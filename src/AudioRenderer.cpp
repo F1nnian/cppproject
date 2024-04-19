@@ -1,9 +1,12 @@
+// This class is responsible for rendering audio in the game. It uses raylib's audio functions to load and play sounds and music.
+
 #include "AudioRenderer.h"
 #include <iostream>
 
 void AudioRenderer::loadSounds()
 {
-    InitAudioDevice();
+    InitAudioDevice(); // Initialize audio device
+    // Load sounds and set volume
     select = LoadSound("../resources/audio/select.wav");
     match = LoadSound("../resources/audio/match.wav");
     gameOver = LoadSound("../resources/audio/gameover.wav");

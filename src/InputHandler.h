@@ -6,6 +6,4 @@ class InputHandler
 public:
     bool selectCandyInput();
     bool playAgainInput();
-
-private:
 };
