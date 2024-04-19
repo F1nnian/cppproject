@@ -13,6 +13,11 @@ set_target_properties(raylib PROPERTIES IMPORTED_LOCATION "C:/raylib/raylib/src/
 file(GLOB SOURCES "src/*.cpp")
 add_executable(cppproject ${SOURCES})  # main.cpp is your main source file
 
+# Link necessary libraries statically
+set(CMAKE_EXE_LINKER_FLAGS "-static")
+set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static-libgcc -static-libstdc++ -static -Wl,--whole-archive -lpthread -Wl,--no-whole-archive")
+
 # Link Raylib with your executable
 target_link_libraries(cppproject raylib)
 target_link_libraries(cppproject winmm)
