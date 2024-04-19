@@ -27,7 +27,7 @@ This repository contains a student project implementing a Candy Crush inspired g
 
 1. Navigate to [Releases](https://github.com/F1nnian/cppproject/releases/) and download the zip of the newest Releases 
 2. Unzip the folder
-3. Run the included .exe
+3. Navigate to cppproject/ and run the included .exe
 
 ## Background Music
 
