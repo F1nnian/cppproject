@@ -18,10 +18,11 @@ This repository contains a student project implementing a Candy Crush inspired g
 ### Build yourself
 
 1. Install [Raylib](https://www.raylib.com/) to default path
-2. Install [CMake](https://cmake.org/download/)
-2. Clone the repository or download the .zip from [Releases](https://github.com/F1nnian/cppproject/releases/)
-3. Open Visual Studio Code and install the CMake extension
-4. Select Compiler and launch with CMake (usually works by pressing <SHIFT + F5>)
+2. Install [CMake](https://cmake.org/download/) (add to PATH-Variables)
+3. If not already: Install a c++ compiler (e.g. by following this guide: [Using GCC with MinGW](https://code.visualstudio.com/docs/cpp/config-mingw))
+4. Clone the repository or download the .zip from [Releases](https://github.com/F1nnian/cppproject/releases/)
+5. Open Visual Studio Code and install the CMake extension
+6. Launch with CMake (usually works by pressing <SHIFT + F5>) and select your compiler
 
 ### Use prebuilt .exe (built on Windows 11)
 
